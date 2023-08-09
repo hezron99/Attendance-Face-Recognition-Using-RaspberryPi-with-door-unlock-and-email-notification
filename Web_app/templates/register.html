@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="#home" class="navbar-brand  d-none d-sm-block">
+                <span class="fs-3 fw-bolder">Face Attendance Recognition</span>
+            </a>
+            <button 
+                class="navbar-toggler"
+                type = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#navmenu"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="studentList.html" class="nav-link">Student List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-light">        
+        <div class="container">
+            <hr>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        <div class="container">
+                        <h4 class="text-center">{{ message }}</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="d-flex justify-content-center align-items-center">
+                <h3 class="fw-bold">Register</h3>
+            </div>
+            <div class="d-flex justify-content-center">
+                <form class="py-2" action="/register" method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupFile01">Upload Your Image</label>
+                        <input type="file" name="image" class="form-control form-control-md border-3" id="inputGroupFile01">
+                    </div>
+                    <div class="mb-4">
+                        <!--<label for="exampleInputEmail1" class="form-label">Instructor ID</label>-->
+                        <input type="text" name="id_instructor" class="form-control form-control-md border-3" id="exampleInputEmail1" placeholder="Instructor ID">  
+                    </div>
+                    <div class="mb-4">
+                      <!--<label for="exampleInputEmail1" class="form-label">Full Name</label>-->
+                      <input type="text" name="fullname_instructor" class="form-control form-select-md border-3" id="exampleInputEmail1" placeholder="Full Name"> 
+                    </div>
+                    <div class="mb-4">
+                        <!--<label for="exampleInputEmail1" class="form-label">Email Address</label>-->
+                        <input type="text" name="email_instructor" class="form-control form-select-md border-3" id="exampleInputEmail1" placeholder="Email Address"> 
+                    </div>
+
+                    <div class="mb-4">
+                        <!--<label for="exampleInputEmail1" class="form-label">Password</label>-->
+                        <input type="password" name="password" class="form-control form-select-md border-3" id="exampleInputEmail1" placeholder="Password"> 
+                    </div>
+                    <div class="mb-4">
+                        <!--<label for="exampleInputEmail1" class="form-label">Repeat Password</label>-->
+                        <input type="password" name="re-password" class="form-control form-select-md border-3" id="exampleInputEmail1" placeholder="Repeat Password"> 
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Department</label>
+                        <select class="form-select form-select-md border-3" name="department" id="inputGroupSelect01">
+                          <option selected>Choose your Department</option>
+                          <option value="CED">CED</option>
+                          <option value="BED">BED</option>
+                          <option value="TESDA">TESDA</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Subject</label>
+                        <select class="form-select form-select-md border-3" name="subject" id="inputGroupSelect01">
+                          <option selected>Subject</option>
+                          <option value="COMPUTING FUNDAMENTALS">COMPUTING FUNDAMENTALS</option>
+                          <option value="COMPUTER PROGRAMMING">COMPUTER PROGRAMMING</option>
+                          <option value="SYSTEM INTEGRATION">SYSTEM INTEGRATION</option>
+                        </select>
+                    </div>
+                    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                </form>           
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+

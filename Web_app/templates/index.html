@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="#home" class="navbar-brand  d-none d-sm-block">
+                <span class="fs-3 fw-bolder">Face Attendance Recognition</span>
+            </a>
+            <button 
+                class="navbar-toggler"
+                type = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#navmenu"
+            >
+          
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item ">
+                        <a href="{{ url_for('index',email_ad=session['email_ad'] ) }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('studentList') }}" class="nav-link">Student List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('trainData') }}" class="nav-link">Train Data</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a href="{{ url_for('logs') }}" class="nav-link">Instructor Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('session_logout') }}" class="nav-link btn btn-dark text-light">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="container">
+                <h4 class="alert-heading">Warning!</h4>
+                <h4 class="text-center">{{ message }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+    {% endwith %}
+    <section class="bg-light py-4 text-dark">
+        <div class="container">
+            <div class="py-3">
+                <div class="d-flex row g-3 mb-3">
+                    <img src="/static/img/images.png" alt="" class="img-fluid rounded-circle" style="width: 130px;">
+                    <div class="col">   
+                        <h1 class="display-6">{{ output }}</h1>
+                        <p class="fs-5">{{ department }} Instructor</p>
+                    </div>
+                </div>
+                <h1 class="display-6 mb-4">{{ subject }} {{ schedule }}</h1>   
+                <div class="card rounded-3 border-0 shadow">
+                    <div class="card-body ">
+                        <div class="table-responsive table-responsive-sm py-3">
+                            <div class="d-flex justify-content-between px-4">
+                                <h4 class="mb-4">Student Attendance today:</h4>
+                                <h4 class="mb-4">Classroom: {{ room }}</h4>
+                            </div>
+                           
+                        {% if output1 %}
+                              
+                            <div class="table-responsive table-responsive-sm p-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Course</th>
+                                        <th scope="col">Year Level</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Room</th>
+                                        <th scope="col">Class Schedule Time</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time IN</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in output1 %}
+                                        <tr>
+                                            <td>{{ row['full_name'] }}</td>
+                                            <td>{{ row['course'] }}</td>
+                                            <td>{{ row['year_level'] }}</td>
+                                            <td>{{ row['student_subject'] }}</td>
+                                            <td>{{ row['room'] }}</td>
+                                            <td>{{ row['class_time'] }}</td>
+                                            <td>{{ datetoday2 }}</td>
+                                            <td>{{ row['timeIN'] }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <p>No data found!</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+    <div>
+        <h1>Upload Image</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file">Choose a file:</label>
+            <input type="file" name="image" id="image"><br>
+            <label for="userid">Enter user ID:</label>
+            <input type="text" name="id" id="id"><br>
+            <label for="userid">Full Name:</label>
+            <input type="text" name="fullname" id="fullname"><br>
+            <label for="userid">Course:</label>
+            <input type="text" name="course" id="course"><br>
+            <label for="userid">Year Level:</label>
+            <input type="text" name="year" id="year"><br>
+            <label for="userid">Gender:</label>
+            <input type="text" name="gender" id="gender"><br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row g-4 d-flex justify-content-between">
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h1>Face Student logs</h1>
+                            <h1>0</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h1>Face Instructor logs</h1>
+                            <h1>0</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h1>Login Logs</h1>
+                            <h1>0</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light py-5">
+        <div class="container-fluid">
+            <div class="row g-5 d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

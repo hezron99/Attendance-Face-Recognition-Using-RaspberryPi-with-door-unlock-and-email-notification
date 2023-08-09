@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="#home" class="navbar-brand  d-none d-sm-block">
+                <span class="fs-3 fw-bolder">Face Attendance Recognition</span>
+            </a>
+            <button 
+                class="navbar-toggler"
+                type = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#navmenu"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('index',email_ad=session['email_ad'] ) }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="studentList.html" class="nav-link">Student List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ClassSched.html" class="nav-link">Class Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a href="instructorLogs.html" class="nav-link">Instructor Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a href="" class="nav-link">Deactivate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-light py-4 text-dark">
+        <div class="container">
+            <div class="py-4">
+                <h1 class="display-6 mb-4">Class Schedule</h1>   
+                <div class="card rounded-5">
+                    
+                    <div class="card-body p-4">
+                        <div class="d-flex mx-2">
+                            <h4 class="">Schedule List:</h4>
+                            <p class="ms-auto fs-6">S.Y 2023 2nd Semester</p>
+                        </div>
+                            
+                       
+                        <div class="table-responsive table-responsive-sm p-4">
+                            <table class="table table-striped text-center">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Laboratory Schedule</th>
+                                    <th scope="col">Class Schedule</th>
+                                    <th scope="col">Number of Student:</th>
+                                    
+
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">301</th>
+                                    <td>Computing Fundamentals</td>
+                                    <td>MTH 7:30am-9:00am</td>
+                                    <td>W 1:30pm-2:30pm</td>
+                                    <td>30</td>
+                                    
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">CL3</th>
+                                    <td>System Integration</td>
+                                    <td>MTH 10:30am-12:00pm</td>
+                                    <td>W 12:00pm-1:00pm</td>
+                                    <td>20</td>
+                                    
+                                  <tr>
+                                    <th scope="row">CL5</th>
+                                    <td>Data Communication and Networking</td>
+                                    <td>TF 6:30pm-7:30pm</td>
+                                    <td>W 6:30pm - 7:00pm </td>
+                                    <td>15</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">CL3</th>
+                                    <td>Human Computer Interaction</td>
+                                    <td>TF 9:00am-10:30am</td>
+                                    <td>Sat 8:30am-10:00am</td>
+                                    <td>19</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">CL2</th>
+                                    <td>Computer Programming I</td>
+                                    <td>TF 7:30AM-9:00am</td>
+                                    <td>Sat 10:30am-11:30am</td>
+                                    <td>25</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">CL4</th>
+                                    <td>Software Engineering I</td>
+                                    <td>MTH 9:00am-10:30am</td>
+                                    <td>W 8:00am-9:00am</td>
+                                    <td>26</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">CL1</th>
+                                    <td>Information System</td>
+                                    <td>MTH 5:00pm-6:30pm</td>
+                                    <td>W 5:00pm-6:00pm</td>
+                                    <td>21</td>
+                                    
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

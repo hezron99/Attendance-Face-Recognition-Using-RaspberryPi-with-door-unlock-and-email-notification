@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+   <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="#home" class="navbar-brand  d-none d-sm-block">
+                <span class="fs-3 fw-bolder">Face Attendance Recognition</span>
+            </a>
+            <button 
+                class="navbar-toggler"
+                type = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#navmenu"
+            >
+        
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item ">
+                        <a href="{{ url_for('index',email_ad=session['email_ad'] ) }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('studentList') }}" class="nav-link">Student List</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        
+                        <a href="{{ url_for('logs') }}" class="nav-link">Instructor Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('session_logout') }}" class="nav-link btn btn-dark text-light">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+   </nav>
+   <section class="py-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="container">
+                <h4 class="alert-heading">Well done!</h4>
+                <h4 class="text-center">{{ message }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %} 
+    <div class="container bg-light py-5 px-5">
+        <h1 class="display-6 fw-bolder text-center">Upload Student Data</h1>
+        <form class="py-3" action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Upload Image</label>
+                <input type="file" name="image" class="form-control form-control-lg" id="inputGroupFile01">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Student ID</label>
+                <input type="text" name="id" class="form-control form-control-lg w-50" id="exampleInputEmail1" placeholder="Student ID">  
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Full Name</label>
+              <input type="text" name="fullname" class="form-control form-select-lg" id="exampleInputEmail1" placeholder="Full Name"> 
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control form-select-lg" id="exampleInputEmail1" placeholder="Email Address"> 
+              </div>
+            
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select form-select-lg" name="course" id="inputGroupSelect01">
+                  <option selected>Choose a course</option>
+                  <option value="BSIT">BSIT</option>
+                  <option value="BSCS">BSCS</option>
+                  <option value="BSBA">BSBA</option>
+                  <option value="TESDA">TESDA</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Year Level</label>
+                <select class="form-select form-select-lg" name="year" id="inputGroupSelect01">
+                  <option selected>Choose...</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+                <select class="form-select form-select-sm" name="gender" id="inputGroupSelect01">
+                  <option selected>Choose..</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Unknown">Unknown</option>
+                </select>
+            </div>
+
+            <button type="submit" value="Upload" class="btn btn-primary float-end">Submit</button>
+        </form>
+    </div>
+   </section>
+{% endblock %}
